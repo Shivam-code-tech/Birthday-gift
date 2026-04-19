@@ -2,116 +2,173 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🎉</title>
+
 <style>
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(120deg, #ff9a9e, #fad0c4);
-        overflow: hidden;
-        text-align: center;
-        color: white;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-    h1 {
-        margin-top: 80px;
-        font-size: 50px;
-        animation: fadeIn 2s ease-in-out;
-    }
+body {
+    overflow-x: hidden;
+}
 
-    p {
-        font-size: 20px;
-        width: 60%;
-        margin: auto;
-        opacity: 0;
-        animation: fadeIn 3s forwards;
-        animation-delay: 1.5s;
-    }
+/* Sections (mobile full screen) */
+.section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
-    button {
-        margin-top: 30px;
-        padding: 15px 30px;
-        font-size: 18px;
-        border: none;
-        border-radius: 25px;
-        background: white;
-        color: #ff4d6d;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+    padding: 20px;
+}
 
-    button:hover {
-        background: #ff4d6d;
-        color: white;
-    }
+/* Colors */
+.section1 { background: linear-gradient(120deg, #667eea, #764ba2); color: white; }
+.section2 { background: #ffffff; color: #333; }
+.section3 { background: #ffcc00; color: #333; }
+.section4 { background: #222; color: white; }
 
-    .hidden {
-        display: none;
-        margin-top: 20px;
-        font-size: 22px;
-    }
+/* Text */
+h1 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
 
-    @keyframes fadeIn {
-        from {opacity: 0;}
-        to {opacity: 1;}
-    }
+p {
+    font-size: 16px;
+    max-width: 300px;
+    line-height: 1.5;
+}
 
-    /* Floating hearts */
-    .heart {
-        position: absolute;
-        bottom: -10px;
-        font-size: 20px;
-        animation: float 6s infinite;
-    }
+/* Button */
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    background: white;
+    color: #333;
+    cursor: pointer;
+}
 
-    @keyframes float {
-        0% {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-800px);
-            opacity: 0;
-        }
-    }
+/* Gallery */
+.gallery {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    width: 100%;
+    padding: 10px;
+}
+
+.gallery img {
+    width: 70%;
+    border-radius: 15px;
+}
+
+/* Surprise */
+#surprise {
+    display: none;
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+/* Floating balloons */
+.balloon {
+    position: fixed;
+    bottom: -100px;
+    font-size: 25px;
+    animation: rise 6s linear infinite;
+}
+
+@keyframes rise {
+    from { transform: translateY(0); }
+    to { transform: translateY(-800px); }
+}
+
+/* Typing effect */
+#typing {
+    border-right: 2px solid white;
+    padding-right: 5px;
+}
 </style>
 </head>
 
 <body>
 
-<h1>Happy Birthday, <span id="name">Your Special One</span> 🎉</h1>
+<!-- Section 1 -->
+<div class="section section1">
+    <h1>🎉 Happy Birthday <span id="name">BRO</span> 🎉</h1>
+    <p id="typing"></p>
+</div>
 
-<p id="message">
-    You make my world brighter every day. Today is all about celebrating you, your smile, and everything that makes you amazing 💖
-</p>
+<!-- Section 2 -->
+<div class="section section2">
+    <h1>Memories 📸</h1>
+    <div class="gallery">
+        <img src="https://picsum.photos/300?1">
+        <img src="https://picsum.photos/300?2">
+        <img src="https://picsum.photos/300?3">
+    </div>
+</div>
 
-<button onclick="showSurprise()">Click for Surprise 🎁</button>
+<!-- Section 3 -->
+<div class="section section3">
+    <h1>Message 💬</h1>
+    <p>
+        Life’s better with a friend like you.  
+        Thanks for all the crazy memories and stupid decisions 😂  
+        Stay the same legend always!
+    </p>
 
-<div id="surprise" class="hidden">
-    🎂 I hope all your dreams come true! 💫 <br>
-    You deserve the best day ever ❤️
+    <button onclick="showSurprise()">Tap Here 🎁</button>
+    <div id="surprise">🍰 Treat pending. Don’t forget 😎</div>
+</div>
+
+<!-- Section 4 -->
+<div class="section section4">
+    <h1>Final Note ❤️</h1>
+    <p>Another year, same idiot… but my favorite one 🤝</p>
 </div>
 
 <script>
-    function showSurprise() {
-        document.getElementById("surprise").style.display = "block";
+// Typing effect
+const text = "Scroll down... something cool is waiting 👇";
+let i = 0;
+
+function typeEffect() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 40);
     }
+}
+typeEffect();
 
-    // Floating hearts generator
-    function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
-        document.body.appendChild(heart);
+// Surprise
+function showSurprise() {
+    document.getElementById("surprise").style.display = "block";
+}
 
-        setTimeout(() => {
-            heart.remove();
-        }, 6000);
-    }
+// Balloons
+function createBalloon() {
+    const b = document.createElement("div");
+    b.classList.add("balloon");
+    b.innerHTML = "🎈";
+    b.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(b);
 
-    setInterval(createHeart, 300);
+    setTimeout(() => b.remove(), 6000);
+}
+setInterval(createBalloon, 500);
 </script>
 
 </body>
